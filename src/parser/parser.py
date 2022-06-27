@@ -32,5 +32,17 @@ class Parser:
         elif op == '+' or op == '-':
             return 1
         else:
-            raise ValueError('unsupported operand')
+            raise ValueError('unsupported operator')
 
+    @staticmethod
+    def evaluate(lhs, op, rhs):
+        if op == '+':
+            return lhs + rhs
+        elif op == '-':
+            return lhs - rhs
+        elif op == '*':
+            return lhs * rhs
+        elif op == '/':
+            return lhs / rhs
+        else:
+            raise ValueError('unsupported operator')
