@@ -22,7 +22,7 @@
 from ..parser.parser import Parser
 
 def test_precedenceof():
-    print('    └── precedenceof() ... ', end='')
+    print('    ├── precedenceof() ... ', end='')
 
     assert(Parser.precedenceof('+') == 1)
     print(' 1 ', end='')
@@ -45,7 +45,43 @@ def test_precedenceof():
 
     print(' Passed!')
 
+def test_evaluate():
+    print('    └── evaluate() ... ', end='')
+
+    for i in range(0, 1000):
+        assert(Parser.evaluate(i, '+', i) == i + i)
+    print(' 1 ', end='')
+
+    for i in range(0, 1000):
+        assert(Parser.evaluate(-i, '-', -i) == -i - -i)
+    print(' 2 ', end='')
+
+    for i in range(0, 10):
+        assert(Parser.evaluate(i, '*', i) == i * i)
+    print(' 3 ', end='')
+
+    for i in range(1, 1000):
+        assert(Parser.evaluate(i, '/', i) == i / i)
+    print(' 4 ', end='')
+
+    # Should not evaluate division by zero
+    try:
+        Parser.evaluate(0, '/', 0)
+        assert(False)
+    except ZeroDivisionError:
+        print(' 5 ', end='')
+
+    # Should not evaluate unsupported operators
+    try:
+        Parser.evaluate(i, '**', i)
+        assert(False)
+    except ValueError:
+        print(' 6 ', end='')
+
+    print(' Passed!')
+
 def run():
     print('Testing parser.py ... ')
     test_precedenceof()
+    test_evaluate()
     print('│   Passed!')
