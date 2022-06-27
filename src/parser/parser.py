@@ -24,3 +24,14 @@ from .util import isnumber
 class Parser:
     def __init__(self):
         pass
+
+    @staticmethod
+    def precedenceof(op):
+        if op == '*' or op == '/':
+            return 2
+        elif op == '+' or op == '-':
+            return 1
+        else:
+            return 0
+
+    
