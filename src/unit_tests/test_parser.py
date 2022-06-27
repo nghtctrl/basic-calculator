@@ -36,7 +36,7 @@ def test_precedenceof():
     assert(Parser.precedenceof('/') == 2)
     print(' 4 ', end='')
 
-    # Unsupported operand raises ValueError
+    # Unsupported operator raises ValueError
     try:
         Parser.precedenceof('**')
         assert(False)
