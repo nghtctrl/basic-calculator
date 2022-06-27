@@ -20,5 +20,5 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 def run():
-    print('Running parser.py ... ')
-    print('    Passed!')
+    print('Testing parser.py ... ')
+    print('│   Passed!')

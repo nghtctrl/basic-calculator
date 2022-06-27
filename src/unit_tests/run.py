@@ -19,12 +19,14 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-from . import test_parser
+from . import test_parser, test_util
 
 def run():
     print('Running unit test ...')
-    print('└── ', end='')
+    print('├── ', end='')
     test_parser.run()
+    print('└── ', end='')
+    test_util.run()
     print('Unit test complete!')
 
 run()
