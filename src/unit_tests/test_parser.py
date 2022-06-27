@@ -19,6 +19,30 @@
 # IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+from ..parser.parser import Parser
+
+def test_precedenceof():
+    print('    └── precedenceof() ... ', end='')
+
+    assert(Parser.precedenceof('+') == 1)
+    print(' 1 ', end='')
+
+    assert(Parser.precedenceof('-') == 1)
+    print(' 2 ', end='')
+
+    assert(Parser.precedenceof('*') == 2)
+    print(' 3 ', end='')
+
+    assert(Parser.precedenceof('/') == 2)
+    print(' 4 ', end='')
+
+    # Precedence of a currently unsupported operator
+    assert(Parser.precedenceof('**') == 0)
+    print(' 5 ', end='')
+
+    print(' Passed!')
+
 def run():
     print('Testing parser.py ... ')
+    test_precedenceof()
     print('│   Passed!')
