@@ -32,6 +32,5 @@ class Parser:
         elif op == '+' or op == '-':
             return 1
         else:
-            return 0
+            raise ValueError('unsupported operand')
 
-    
