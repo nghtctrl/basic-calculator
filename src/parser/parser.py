@@ -22,8 +22,44 @@
 from .util import isnumber
 
 class Parser:
-    def __init__(self):
-        pass
+    # Expression must be in a string in a list, not just a string
+    def __init__(self, expression):
+        self.expression = expression
+
+    def calculate(self):
+        output_queue = []
+        operator_stack = []
+
+        for token in self.expression:
+            if isnumber(token):
+                try:
+                    output_queue.append(int(token))
+                except ValueError:
+                    output_queue.append(float(token))
+            elif token == '(':
+                operator_stack.append(token)
+            elif token == ')':
+                while operator_stack[-1] != '(':
+                    op = operator_stack.pop()
+                    rhs = output_queue.pop()
+                    lhs = output_queue.pop()
+                    output_queue.append(evaluate(lhs, op, rhs))
+                operator_stack.pop()
+            else:
+                if len(operator_stack) != 0 and precedenceof(operator_stack[-1]) >= precedenceof(token):
+                    op = operator_stack.pop()
+                    rhs = output_queue.pop()
+                    lhs = output_queue.pop()
+                    output_queue.append(evaluate(lhs, op, rhs))
+                operator_stack.append(token)
+
+        while len(operator_stack) != 0:
+            op = operator_stack.pop()
+            rhs = output_queue.pop()
+            lhs = output_queue.pop()
+            output_queue.append(evaluate(lhs, op, rhs))
+
+        return output_queue[-1]
 
     @staticmethod
     def precedenceof(op):
