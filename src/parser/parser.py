@@ -46,7 +46,7 @@ class Parser:
                     output_queue.append(Parser.evaluate(lhs, op, rhs))
                 operator_stack.pop()
             else:
-                if len(operator_stack) != 0 and Parser.precedenceof(operator_stack[-1]) >= Parser.precedenceof(token):
+                if len(operator_stack) != 0 and operator_stack[-1] not in ['(', ')'] and Parser.precedenceof(operator_stack[-1]) >= Parser.precedenceof(token):
                     op = operator_stack.pop()
                     rhs = output_queue.pop()
                     lhs = output_queue.pop()
