@@ -43,21 +43,21 @@ class Parser:
                     op = operator_stack.pop()
                     rhs = output_queue.pop()
                     lhs = output_queue.pop()
-                    output_queue.append(evaluate(lhs, op, rhs))
+                    output_queue.append(Parser.evaluate(lhs, op, rhs))
                 operator_stack.pop()
             else:
-                if len(operator_stack) != 0 and precedenceof(operator_stack[-1]) >= precedenceof(token):
+                if len(operator_stack) != 0 and Parser.precedenceof(operator_stack[-1]) >= Parser.precedenceof(token):
                     op = operator_stack.pop()
                     rhs = output_queue.pop()
                     lhs = output_queue.pop()
-                    output_queue.append(evaluate(lhs, op, rhs))
+                    output_queue.append(Parser.evaluate(lhs, op, rhs))
                 operator_stack.append(token)
 
         while len(operator_stack) != 0:
             op = operator_stack.pop()
             rhs = output_queue.pop()
             lhs = output_queue.pop()
-            output_queue.append(evaluate(lhs, op, rhs))
+            output_queue.append(Parser.evaluate(lhs, op, rhs))
 
         return output_queue[-1]
 
